@@ -8,7 +8,10 @@ import hello.core.member.MemberServiceImpl;
 import hello.core.member.MemoryMemberRepository;
 import hello.core.order.OrderService;
 import hello.core.order.OrderServiceImpl;
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
 
+@Configuration
 public class AppConfig {
 
 //    public MemberService memberService(){
@@ -19,18 +22,20 @@ public class AppConfig {
     //    public OrderService orderService(){
 //        return new OrderServiceImpl(new MemoryMemberRepository(),new FixDiscountPolicy());
 //    }
+    @Bean
     public MemberService memberService() {
         return new MemberServiceImpl(getMemberRepository());
     }
-
-    private MemoryMemberRepository getMemberRepository() {
+    @Bean
+    public MemoryMemberRepository getMemberRepository() {
         return new MemoryMemberRepository();
     }
-
+    @Bean
     public OrderService orderService() {
         return new OrderServiceImpl(getMemberRepository(), discountPolicy());
     }
     //FixDiscountPolicy -> RateDiscountPolicy로 변경
+    @Bean
     public DiscountPolicy discountPolicy() {
 //        return new FixDiscountPolicy();
         return new RateDiscountPolicy();
