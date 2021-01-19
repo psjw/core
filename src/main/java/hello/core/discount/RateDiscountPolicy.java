@@ -1,10 +1,18 @@
 package hello.core.discount;
 
+import hello.core.annotation.MainDiscountPolicy;
 import hello.core.member.Grade;
 import hello.core.member.Member;
+import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.context.annotation.Primary;
+import org.springframework.stereotype.Component;
 
 //F2 오류난 곳으로 이동
 //cmd + shift + t : TestClass 생성
+@Component
+//@Qualifier("mainDiscountPolicy")
+//@Primary
+@MainDiscountPolicy
 public class RateDiscountPolicy implements DiscountPolicy{
 
     private int discountPercent = 10;
